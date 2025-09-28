@@ -10,13 +10,12 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo">
-                <span class="logo-icon">🌙</span>
                 <span class="logo-text">Eclipse</span>
             </div>
             <div class="nav-links">
                 <a href="#features">Возможности</a>
                 <a href="#integration">Интеграция</a>
-                <a href="dashboard.html" class="login-btn">Войти</a>
+                <a href="login.html" class="login-btn">Войти</a>
             </div>
         </div>
     </nav>
@@ -26,97 +25,10 @@
             <h1 class="hero-title">Eclipse Auth</h1>
             <p class="hero-subtitle">Профессиональная система лицензирования для разработчиков</p>
             <div class="hero-buttons">
-                <a href="dashboard.html" class="btn-primary">Начать сейчас</a>
-                <a href="#integration" class="btn-secondary">Документация</a>
-            </div>
-        </div>
-        <div class="hero-visual">
-            <div class="dashboard-preview">
-                <div class="preview-header">
-                    <div class="preview-dots">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                </div>
-                <div class="preview-content">
-                    <div class="stat-card">
-                        <h4>Всего продаж</h4>
-                        <p class="stat-number">49,785</p>
-                        <span class="live-badge">LIVE</span>
-                    </div>
-                    <div class="stat-card">
-                        <h4>Доступные лицензии</h4>
-                        <p class="stat-number">7,744</p>
-                        <span class="live-badge">LIVE</span>
-                    </div>
-                </div>
+                <a href="login.html" class="btn-primary">Начать сейчас</a>
             </div>
         </div>
     </section>
-
-    <section id="features" class="features">
-        <div class="container">
-            <h2 class="section-title">Мощные возможности</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🔑</div>
-                    <h3>Генерация ключей</h3>
-                    <p>Создавайте уникальные лицензионные ключи с настраиваемыми параметрами</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🛡️</div>
-                    <h3>HWID защита</h3>
-                    <p>Привязывайте лицензии к конкретному оборудованию пользователя</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🌐</div>
-                    <h3>Мульти-языковая поддержка</h3>
-                    <p>Готовые загрузчики для C++, Python, Java и других языков</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📊</div>
-                    <h3>Подробная аналитика</h3>
-                    <p>Отслеживайте использование и статистику в реальном времени</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="integration" class="integration">
-        <div class="container">
-            <h2 class="section-title">Простая интеграция</h2>
-            <div class="code-tabs">
-                <div class="tab-buttons">
-                    <button class="tab-btn active" data-tab="cpp">C++</button>
-                    <button class="tab-btn" data-tab="python">Python</button>
-                    <button class="tab-btn" data-tab="java">Java</button>
-                </div>
-                <div class="tab-content">
-                    <div class="tab-pane active" id="cpp">
-                        <pre><code>#include "eclipse.h"
-
-std::string name = "your_app_name";
-std::string ownerid = "your_owner_id"; 
-std::string version = "1.0";
-std::string url = "https://yourdomain.com/api/";
-
-Eclipse eclipse(name, ownerid, version, url);
-
-if(eclipse.init()) {
-    eclipse.login("license_key");
-}</code></pre>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 Eclipse Auth System. Все права защищены.</p>
-        </div>
-    </footer>
 
     <script src="script.js"></script>
 </body>
