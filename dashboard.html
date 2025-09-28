@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Панель управления - Eclipse</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dashboard-body">
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">🌙</span>
+                <span class="logo-text">Eclipse</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Главная</a>
+                <a href="apps.html">Приложения</a>
+                <a href="#" class="logout-btn">Выйти</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-menu">
+                <a href="dashboard.html" class="menu-item active">Дашборд</a>
+                <a href="apps.html" class="menu-item">Мои приложения</a>
+                <a href="#" class="menu-item">Лицензии</a>
+                <a href="#" class="menu-item">Пользователи</a>
+                <a href="#" class="menu-item">Настройки</a>
+            </div>
+        </aside>
+
+        <main class="dashboard-main">
+            <div class="dashboard-header">
+                <h1>Обзор системы</h1>
+                <div class="header-actions">
+                    <button class="btn-primary" onclick="showAddAppModal()">Добавить приложение</button>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card large">
+                    <div class="stat-header">
+                        <h3>Всего продаж</h3>
+                        <span class="live-badge">LIVE</span>
+                    </div>
+                    <div class="stat-content">
+                        <p class="stat-number">49,785</p>
+                        <div class="stat-trend up">+12%</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <h3>Доступные лицензии</h3>
+                        <span class="live-badge">LIVE</span>
+                    </div>
+                    <div class="stat-content">
+                        <p class="stat-number">7,744</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <h3>Online пользователи</h3>
+                        <span class="live-badge">LIVE</span>
+                    </div>
+                    <div class="stat-content">
+                        <p class="stat-number">2,459</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <h3>Конверсия</h3>
+                        <span class="live-badge">LIVE</span>
+                    </div>
+                    <div class="stat-content">
+                        <p class="stat-number">86.5%</p>
+                        <div class="stat-trend up">+5.2%</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <h3>Баланс</h3>
+                    </div>
+                    <div class="stat-content">
+                        <p class="stat-number">$316.52</p>
+                        <span class="pending">$8.49 pending</span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <h3>Health Score</h3>
+                    </div>
+                    <div class="stat-content">
+                        <div class="health-score">90%</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recent-activity">
+                <h2>Последняя активность</h2>
+                <div class="activity-list">
+                    <div class="activity-item">
+                        <div class="activity-icon">🔑</div>
+                        <div class="activity-info">
+                            <p>Новый ключ активирован</p>
+                            <span>2 минуты назад</span>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon">👤</div>
+                        <div class="activity-info">
+                            <p>Новый пользователь зарегистрирован</p>
+                            <span>5 минут назад</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="addAppModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Добавить приложение</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="addAppForm">
+                    <div class="form-group">
+                        <label>Название приложения</label>
+                        <input type="text" id="appName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Версия</label>
+                        <input type="text" id="appVersion" value="1.0" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">Создать</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
