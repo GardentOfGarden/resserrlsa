@@ -6,149 +6,226 @@
     <title>Панель управления - Eclipse</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="dashboard-body">
+<body>
     <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo">
-                <span class="logo-icon">🌙</span>
-                <span class="logo-text">Eclipse</span>
-            </div>
-            <div class="nav-links">
-                <a href="index.html">Главная</a>
-                <a href="apps.html">Приложения</a>
-                <a href="#" class="logout-btn">Выйти</a>
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">Eclipse</div>
+                <div class="nav-links">
+                    <a href="#" id="logoutBtn">Выйти</a>
+                </div>
             </div>
         </div>
     </nav>
 
-    <div class="dashboard-container">
-        <aside class="sidebar">
-            <div class="sidebar-menu">
-                <a href="dashboard.html" class="menu-item active">Дашборд</a>
-                <a href="apps.html" class="menu-item">Мои приложения</a>
-                <a href="#" class="menu-item">Лицензии</a>
-                <a href="#" class="menu-item">Пользователи</a>
-                <a href="#" class="menu-item">Настройки</a>
-            </div>
-        </aside>
-
-        <main class="dashboard-main">
+    <div class="dashboard">
+        <div class="container">
             <div class="dashboard-header">
-                <h1>Обзор системы</h1>
-                <div class="header-actions">
-                    <button class="btn-primary" onclick="showAddAppModal()">Добавить приложение</button>
-                </div>
+                <h1>Панель управления</h1>
+                <button class="btn btn-primary" onclick="showModal('appModal')">Создать приложение</button>
             </div>
 
             <div class="stats-grid">
-                <div class="stat-card large">
-                    <div class="stat-header">
-                        <h3>Всего продаж</h3>
-                        <span class="live-badge">LIVE</span>
-                    </div>
-                    <div class="stat-content">
-                        <p class="stat-number">49,785</p>
-                        <div class="stat-trend up">+12%</div>
-                    </div>
-                </div>
-
                 <div class="stat-card">
-                    <div class="stat-header">
-                        <h3>Доступные лицензии</h3>
-                        <span class="live-badge">LIVE</span>
-                    </div>
-                    <div class="stat-content">
-                        <p class="stat-number">7,744</p>
-                    </div>
+                    <div class="stat-number" id="totalApps">0</div>
+                    <div class="stat-label">Приложения</div>
                 </div>
-
                 <div class="stat-card">
-                    <div class="stat-header">
-                        <h3>Online пользователи</h3>
-                        <span class="live-badge">LIVE</span>
-                    </div>
-                    <div class="stat-content">
-                        <p class="stat-number">2,459</p>
-                    </div>
+                    <div class="stat-number" id="totalKeys">0</div>
+                    <div class="stat-label">Ключи</div>
                 </div>
-
                 <div class="stat-card">
-                    <div class="stat-header">
-                        <h3>Конверсия</h3>
-                        <span class="live-badge">LIVE</span>
-                    </div>
-                    <div class="stat-content">
-                        <p class="stat-number">86.5%</p>
-                        <div class="stat-trend up">+5.2%</div>
-                    </div>
-                </div>
-
-                <div class="stat-card">
-                    <div class="stat-header">
-                        <h3>Баланс</h3>
-                    </div>
-                    <div class="stat-content">
-                        <p class="stat-number">$316.52</p>
-                        <span class="pending">$8.49 pending</span>
-                    </div>
-                </div>
-
-                <div class="stat-card">
-                    <div class="stat-header">
-                        <h3>Health Score</h3>
-                    </div>
-                    <div class="stat-content">
-                        <div class="health-score">90%</div>
-                    </div>
+                    <div class="stat-number" id="activeKeys">0</div>
+                    <div class="stat-label">Активные ключи</div>
                 </div>
             </div>
 
-            <div class="recent-activity">
-                <h2>Последняя активность</h2>
-                <div class="activity-list">
-                    <div class="activity-item">
-                        <div class="activity-icon">🔑</div>
-                        <div class="activity-info">
-                            <p>Новый ключ активирован</p>
-                            <span>2 минуты назад</span>
-                        </div>
-                    </div>
-                    <div class="activity-item">
-                        <div class="activity-icon">👤</div>
-                        <div class="activity-info">
-                            <p>Новый пользователь зарегистрирован</p>
-                            <span>5 минут назад</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
-    </div>
-
-    <div id="addAppModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Добавить приложение</h3>
-                <span class="close">&times;</span>
-            </div>
-            <div class="modal-body">
-                <form id="addAppForm">
-                    <div class="form-group">
-                        <label>Название приложения</label>
-                        <input type="text" id="appName" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Версия</label>
-                        <input type="text" id="appVersion" value="1.0" required>
-                    </div>
-                    <div class="form-actions">
-                        <button type="submit" class="btn-primary">Создать</button>
-                    </div>
-                </form>
+            <h2>Мои приложения</h2>
+            <div class="apps-grid" id="appsList">
+                <!-- Приложения будут здесь -->
             </div>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- Модальное окно создания приложения -->
+    <div id="appModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Создать приложение</h3>
+                <span class="close" onclick="hideModal('appModal')">&times;</span>
+            </div>
+            <form id="createAppForm">
+                <div class="form-group">
+                    <label>Название приложения</label>
+                    <input type="text" id="appName" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Создать</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Модальное окно управления ключами -->
+    <div id="keysModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Ключи приложения</h3>
+                <span class="close" onclick="hideModal('keysModal')">&times;</span>
+            </div>
+            <div id="keysList" class="keys-list">
+                <!-- Ключи будут здесь -->
+            </div>
+            <button class="btn btn-primary btn-block" onclick="generateKey()" style="margin-top: 1rem;">Создать ключ</button>
+        </div>
+    </div>
+
+    <script>
+        let currentAppId = null;
+        const token = localStorage.getItem('token');
+        
+        if (!token) {
+            window.location.href = 'login.html';
+        }
+
+        // Загрузка приложений
+        async function loadApps() {
+            try {
+                const response = await fetch('/api/apps', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                const data = await response.json();
+                
+                if (data.success) {
+                    displayApps(data.apps);
+                    document.getElementById('totalApps').textContent = data.apps.length;
+                }
+            } catch (error) {
+                console.error('Error loading apps:', error);
+            }
+        }
+
+        // Отображение приложений
+        function displayApps(apps) {
+            const appsList = document.getElementById('appsList');
+            appsList.innerHTML = '';
+            
+            apps.forEach(app => {
+                const appCard = document.createElement('div');
+                appCard.className = 'app-card';
+                appCard.innerHTML = `
+                    <div class="app-header">
+                        <div class="app-name">${app.name}</div>
+                        <div>v${app.version}</div>
+                    </div>
+                    <div class="app-actions">
+                        <button class="btn btn-primary btn-sm" onclick="manageKeys(${app.id}, '${app.name}')">Ключи</button>
+                        <button class="btn btn-sm" onclick="showIntegration(${app.id}, '${app.name}')">Код</button>
+                    </div>
+                `;
+                appsList.appendChild(appCard);
+            });
+        }
+
+        // Создание приложения
+        document.getElementById('createAppForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('appName').value;
+            
+            try {
+                const response = await fetch('/api/apps', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ name })
+                });
+                
+                const data = await response.json();
+                if (data.success) {
+                    hideModal('appModal');
+                    document.getElementById('appName').value = '';
+                    loadApps();
+                }
+            } catch (error) {
+                console.error('Error creating app:', error);
+            }
+        });
+
+        // Управление ключами
+        async function manageKeys(appId, appName) {
+            currentAppId = appId;
+            document.querySelector('#keysModal h3').textContent = `Ключи: ${appName}`;
+            await loadKeys(appId);
+            showModal('keysModal');
+        }
+
+        // Загрузка ключей
+        async function loadKeys(appId) {
+            try {
+                const response = await fetch(`/api/apps/${appId}/keys`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                const data = await response.json();
+                
+                if (data.success) {
+                    displayKeys(data.keys);
+                }
+            } catch (error) {
+                console.error('Error loading keys:', error);
+            }
+        }
+
+        // Отображение ключей
+        function displayKeys(keys) {
+            const keysList = document.getElementById('keysList');
+            keysList.innerHTML = '';
+            
+            keys.forEach(key => {
+                const keyItem = document.createElement('div');
+                keyItem.className = 'key-item';
+                keyItem.innerHTML = `
+                    <span class="key-text">${key.key}</span>
+                    <span>${key.status}</span>
+                `;
+                keysList.appendChild(keyItem);
+            });
+        }
+
+        // Генерация ключа
+        async function generateKey() {
+            try {
+                const response = await fetch(`/api/apps/${currentAppId}/keys`, {
+                    method: 'POST',
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                const data = await response.json();
+                
+                if (data.success) {
+                    loadKeys(currentAppId);
+                }
+            } catch (error) {
+                console.error('Error generating key:', error);
+            }
+        }
+
+        // Выход
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            window.location.href = 'login.html';
+        });
+
+        // Управление модальными окнами
+        function showModal(id) {
+            document.getElementById(id).style.display = 'block';
+        }
+
+        function hideModal(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+
+        // Загрузка при загрузке страницы
+        loadApps();
+    </script>
 </body>
 </html>
