@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход - Eclipse</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-text">Eclipse</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Главная</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <h1>Вход в систему</h1>
+                <p>Введите ваши учетные данные</p>
+            </div>
+            
+            <div id="alert" class="alert" style="display: none;"></div>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label>Логин или Email</label>
+                    <input type="text" id="username" required>
+                </div>
+                <div class="form-group">
+                    <label>Пароль</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit" class="btn-primary btn-block">Войти</button>
+            </form>
+            
+            <div style="text-align: center; margin-top: 1rem; color: var(--text-muted);">
+                <small>Тестовые данные: admin / admin123</small>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const alert = document.getElementById('alert');
+
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    localStorage.setItem('eclipse_token', data.token);
+                    localStorage.setItem('eclipse_user', JSON.stringify(data.user));
+                    
+                    alert.style.display = 'block';
+                    alert.className = 'alert success';
+                    alert.textContent = 'Успешный вход! Перенаправление...';
+                    
+                    setTimeout(() => {
+                        window.location.href = 'dashboard.html';
+                    }, 1000);
+                } else {
+                    alert.style.display = 'block';
+                    alert.className = 'alert error';
+                    alert.textContent = data.message;
+                }
+            } catch (error) {
+                alert.style.display = 'block';
+                alert.className = 'alert error';
+                alert.textContent = 'Ошибка сети. Попробуйте еще раз.';
+            }
+        });
+    </script>
+</body>
+</html>
