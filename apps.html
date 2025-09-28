@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Приложения - Eclipse</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dashboard-body">
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">🌙</span>
+                <span class="logo-text">Eclipse</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Главная</a>
+                <a href="dashboard.html">Дашборд</a>
+                <a href="#" class="logout-btn">Выйти</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-menu">
+                <a href="dashboard.html" class="menu-item">Дашборд</a>
+                <a href="apps.html" class="menu-item active">Мои приложения</a>
+                <a href="#" class="menu-item">Лицензии</a>
+                <a href="#" class="menu-item">Пользователи</a>
+                <a href="#" class="menu-item">Настройки</a>
+            </div>
+        </aside>
+
+        <main class="dashboard-main">
+            <div class="dashboard-header">
+                <h1>Мои приложения</h1>
+                <div class="header-actions">
+                    <button class="btn-primary" onclick="showAddAppModal()">Добавить приложение</button>
+                </div>
+            </div>
+
+            <div class="apps-grid">
+                <div class="app-card">
+                    <div class="app-header">
+                        <h3>MyApp v1.0</h3>
+                        <span class="app-status active">Active</span>
+                    </div>
+                    <div class="app-info">
+                        <div class="app-stat">
+                            <span class="stat-label">Ключи</span>
+                            <span class="stat-value">1,245</span>
+                        </div>
+                        <div class="app-stat">
+                            <span class="stat-label">Online</span>
+                            <span class="stat-value">347</span>
+                        </div>
+                    </div>
+                    <div class="app-actions">
+                        <button class="btn-secondary">Управление ключами</button>
+                        <button class="btn-primary">Получить код</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="integration-section">
+                <h2>Интеграция с приложением</h2>
+                <div class="code-example">
+                    <h4>C++ загрузчик:</h4>
+                    <pre><code>#include "eclipse.h"
+
+std::string name = "MyApp";
+std::string ownerid = "user123";
+std::string version = "1.0";
+std::string url = "https://yourdomain.com/api/";
+
+Eclipse eclipse(name, ownerid, version, url);
+
+if(eclipse.init()) {
+    std::string key;
+    std::cout << "Введите лицензионный ключ: ";
+    std::cin >> key;
+    
+    if(eclipse.login(key)) {
+        std::cout << "Успешная авторизация!" << std::endl;
+    } else {
+        std::cout << "Неверный ключ!" << std::endl;
+    }
+}</code></pre>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="addAppModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Добавить приложение</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="addAppForm">
+                    <div class="form-group">
+                        <label>Название приложения</label>
+                        <input type="text" id="appName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Версия</label>
+                        <input type="text" id="appVersion" value="1.0" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">Создать</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
